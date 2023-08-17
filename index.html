@@ -1,22 +1,84 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>yasudacloud.github.io</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script>
+      function eventTrigger(eventName) {
+        const element = document.querySelector('#event')
+        element.innerHTML = eventName
+      }
+
+      window.addEventListener('load', function () {
+        eventTrigger('window.load')
+      })
+
+      function onLoadBody() {
+        eventTrigger('body.load')
+      }
+
+      function onFocusInput1() {
+        eventTrigger('form.focus.input1')
+      }
+
+      function onFocusInput2() {
+        eventTrigger('form.focus.input2')
+      }
+
+      function onFocusSelect() {
+        eventTrigger('form.focus.select')
+      }
+
+      function onKeyUpInput1() {
+        eventTrigger('form.keyup.input1')
+      }
+
+      function onKeyUpInput2() {
+        eventTrigger('form.keyup.input2')
+      }
+
+      function onChangeSelect() {
+        eventTrigger('form.change.select')
+      }
+
+      function onSubmit() {
+        eventTrigger('form.submit')
+      }
+    </script>
 </head>
-<body>
-  <div class="container">
-  <h2>Example Form</h2>
-  <form action="/" method="GET">
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Example Field</label>
-      <input class="form-control" id="exampleFormControlInput1" name="example">
+<body onload="onLoadBody()">
+<div class="container">
+    <h2>Example Page</h2>
+    <p>Hi, this site is designed for e2e testing of web pages.</p>
+    <form action="/" method="GET">
+        <div class="mb-3">
+            <label for="input1" class="form-label">Example Field1</label>
+            <input class="form-control" id="input1" name="input1" onkeyup="onKeyUpInput1()" onfocus="onFocusInput1()">
+        </div>
+        <div class="mb-3">
+            <label for="input2" class="form-label">Example Field2</label>
+            <input class="form-control" id="input2" name="input2" type="password" onkeyup="onKeyUpInput2()"
+                   onfocus="onFocusInput2()">
+        </div>
+        <div class="mb-3">
+            <label for="select" class="form-label">Example Field3</label>
+            <select class="form-control" id="select" name="select" onchange="onChangeSelect()"
+                    onfocus="onFocusSelect()">
+                <option>test1</option>
+                <option>test2</option>
+                <option>test3</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary" onclick="onSubmit()">Submit</button>
+        </div>
+    </form>
+    <div>
+        <span id="event">default</span>
     </div>
-    <div class="mb-3">
-      <button class="btn btn-primary">Submit</button>
-    </div>
-  </form>
-  </div>
+</div>
 </body>
 </html>
